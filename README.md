@@ -20,9 +20,9 @@
 
 ### 效果图
 
-![](https://github.com/yangdongMC/reactTodo/blob/master/frontend/src/assets/login.png)
-![](https://github.com/yangdongMC/reactTodo/blob/master/frontend/src/assets/register.png)
-![](https://github.com/yangdongMC/reactTodo/blob/master/frontend/src/assets/todo.png)
-![](https://github.com/yangdongMC/reactTodo/blob/master/frontend/src/assets/add.png)
+![](https://github.com/yangdongMC/react-todo/blob/master/frontend/src/assets/login.png)
+![](https://github.com/yangdongMC/react-todo/blob/master/frontend/src/assets/register.png)
+![](https://github.com/yangdongMC/react-todo/blob/master/frontend/src/assets/todo.png)
+![](https://github.com/yangdongMC/react-todo/blob/master/frontend/src/assets/add.png)
 
 
