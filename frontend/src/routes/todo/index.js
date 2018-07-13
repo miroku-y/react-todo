@@ -2,9 +2,10 @@ import React from 'react';
 import {Button,Table,Modal,Form,DatePicker,Input} from 'antd';
 import {connect} from 'dva';
 import moment from 'moment';
+import styles from './index.less'
 
 const FormItem = Form.Item;
-
+const HEIGHT = document.documentElement.scrollHeight || document.body.scrollHeight;
 @Form.create()
 @connect((state)=>{
     return {
@@ -15,10 +16,37 @@ const FormItem = Form.Item;
 class Todo extends React.Component{
 
     column=()=>[
-        {key:"1",title:"日期",dataIndex:"date"},
+        {key:"1",title:"日期",width:140,dataIndex:"date",fixed:'left'},
         {key:"2",title:"信息",dataIndex:"message"},
-        {key:"3",title:"操作",dataIndex:"use"},
+        {key:"22",title:"信息2",dataIndex:"message"},
+        {key:"23",title:"信息3",dataIndex:"message"},
+        {key:"24",title:"信息4",dataIndex:"message"},
+        {key:"25",title:"信息5",dataIndex:"message"},
+        {key:"26",title:"信息6",dataIndex:"message"},
+        {key:"27",title:"信息7",dataIndex:"message"},
+        {key:"28",title:"信息8",dataIndex:"message"},
+        {key:"3",title:"操作",fixed:'right',render:(text,record)=>{
+                const {_id}= text;
+                return <Button type='danger' onClick={()=>this.delete(_id)}>删除</Button>
+            }
+        }
     ]
+
+    delete=(id)=>{
+        this.props.dispatch({
+            type:'todo/delete',
+            payload:{
+                _id:id
+            }
+        }).then((success)=>{
+            if(success){
+                this.props.dispatch({
+                    type:'todo/todoList',
+                    payload:{}
+                })
+            }
+        })
+    }
 
     handleToggle=()=>{
         this.props.dispatch({
@@ -31,10 +59,8 @@ class Todo extends React.Component{
         this.handleSubmit();
     }
     handleSubmit=(e)=>{
-        console.log(e);
         this.props.form.validateFields((err,values)=>{
             if(!err){
-                console.log('成功了',moment(values.time['_d']).format('YYYY-MM-DD'))
                 this.props.dispatch({
                     type:'todo/addTodo',
                     payload:{
@@ -58,12 +84,12 @@ class Todo extends React.Component{
     
     render(){
         const {getFieldDecorator} = this.props.form;
-        console.log(this.props.list);
-        return <div>
+        return <div className={styles.todoList}>
             <Table
             columns={this.column()}
             dataSource={this.props.list}
             rowKey="_id"
+            scroll={{ x: 1120, y: HEIGHT/2 }}
         />
         <p style={{textAlign:"right"}} onClick={this.handleToggle}><Button type="primary">添加</Button></p>
         <Modal

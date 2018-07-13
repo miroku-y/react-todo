@@ -5,5 +5,9 @@ export function add(params) {
 }
 
 export function findAll(params){
-  return request({url:'/api/findAll',method:'get',data:params})
+  return request({url:'/api/findAll',method:'get',data:params});
+}
+
+export function singleDelete(params) {
+  return request({url:'/api/delete',method:'post',data:params});
 }

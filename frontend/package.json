@@ -3,6 +3,7 @@
   "scripts": {
     "start": "PORT=8080 roadhog server",
     "build": "roadhog build",
+    "build:test":"npm run build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint"
   },

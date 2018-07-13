@@ -57,7 +57,6 @@ const login = async (ctx ,next)=>{
             resolve(data);
         })
     })
-    console.log(data)
     ctx.response.body = {
         //返回用户信息
         status:200,

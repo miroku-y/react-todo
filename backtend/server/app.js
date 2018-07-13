@@ -11,6 +11,7 @@ const router=new Router()
 //api
 const registerRouter =require('./api/registerApi');
 const todoRouter=require('./api/todoApi');
+const weiboRouter = require('./api/weiboApi')
 
 // app.use(cors({
 //     origin: '*',

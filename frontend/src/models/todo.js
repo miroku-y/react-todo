@@ -1,5 +1,6 @@
 
-import {add,findAll} from '../services/todo'
+import {add,findAll,singleDelete} from '../services/todo'
+import {message} from 'antd'
 
 export default {
 
@@ -13,7 +14,6 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
       history.listen(({pathname})=>{
-        console.log(history);
         if(pathname=='/todo'){
           dispatch({
             type:'todoList',
@@ -42,11 +42,19 @@ export default {
     *addTodo({ payload }, { call, put }) {  // eslint-disable-line
       
       const {success,status} = yield call(add,payload);
-      console.log(success,status);
       if(success){
         return success;
       }
     },
+    *delete({payload},{call,put,select}){
+      const {success}=yield call(singleDelete,payload);
+      if(success){
+        message.success('删除成功')
+      }else{
+        message.error('失败')
+      }
+        return success;
+    }
   },
 
   reducers: {

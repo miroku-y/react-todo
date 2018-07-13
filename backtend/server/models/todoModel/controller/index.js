@@ -3,14 +3,13 @@ const todoModel = require('../index')
 
 //获取todoList
 const findAll = async (ctx) => {
-  console.log(ctx,'iiiiii')
 	let data = await new Promise((resolve, reject) => {
 		todoModel.find({}, (err, data) => {
 			if (err) {
 				reject(err)
 			}
 			resolve(data)
-		})
+		}).sort({'_id':-1})
 	})
 	ctx.response.body = {
     status: 200,
@@ -56,8 +55,41 @@ const findId = async (ctx) => {
 
 }
 
+//删除
+const singleDelete = async (ctx) =>{
+  let{_id} = ctx.request.body;
+  console.log(_id,'dddd')
+
+  let data = new Promise((resolve,reject)=>{
+    todoModel.remove({_id},(err,data)=>{
+      if(err){
+        reject(err)
+      }
+      resolve(data)
+    })
+  })
+  if(data){
+    ctx.response.body={
+      status:200,
+      data:{
+        success:true,
+        data:true
+      }
+    }
+  }else{
+    ctx.response.body={
+      status:400,
+      data:{
+        success:false,
+        data:false
+      }
+    }
+  }
+}
+
 module.exports = {
   add,
   findId,
   findAll,
+  singleDelete
 }
